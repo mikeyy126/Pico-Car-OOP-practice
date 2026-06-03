@@ -1,0 +1,43 @@
+import time
+
+class Car:
+    def __init__(self, name="MyCar"):
+        self.name = name
+        self.speed = 0
+        self.direction = 0
+        self.is_moving = False
+
+    def play_music(self, song, beat):
+        print(f"{self.name} is playing '{song}' at {beat} bpm.")
+
+    def car_forward(self, speed1=50, speed2=50, seconds=1):
+        self.speed = (speed1 + speed2) / 2
+        self.is_moving = True
+        print(f"{self.name} is moving forward at {speed1}mph, {speed2}mph for {seconds} seconds.")
+        time.sleep(seconds)
+
+    def car_stop(self):
+        self.speed = 0
+        self.is_moving = False
+        print(f"{self.name} has stopped.")
+
+    def car_left(self, degree):
+        t = degree / 90
+        self.direction -= degree
+        print(f"{self.name} is turning left {degree} degrees. This will take {t:.2f} seconds.")
+        time.sleep(t)
+
+    def car_right(self, degree):
+        t = degree / 90
+        self.direction += degree
+        print(f"{self.name} is turning right {degree} degrees. This will take {t:.2f} seconds.")
+        time.sleep(t)
+
+
+car = Car("Car")
+car.car_forward(seconds=1)
+car.car_stop()
+time.sleep(1)
+car.car_left(90)
+car.car_forward(seconds=1)
+car.car_stop()
